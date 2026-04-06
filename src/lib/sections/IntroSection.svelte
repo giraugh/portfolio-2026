@@ -61,11 +61,6 @@
         position: relative;
         padding-block-start: 10em;
         padding-block-end: 5em;
-
-        /*@media (max-width: $bp-mobile) {
-            padding-block-start: 6em;
-            padding-block-end: 8em;
-        }*/
     }
 
     .content {
@@ -88,12 +83,6 @@
     h1 {
         font-size: 4em;
         margin-block-end: 0.3em;
-
-        /*@media (max-width: $bp-mobile) {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.1;
-        }*/
     }
 
     .art {
@@ -140,10 +129,21 @@
 
         .button {
             background: var(--col-surface-blue);
+        }
+    }
 
-            /*@media (max-width: $bp-mobile) {
-                flex: 1;
-            }*/
+    @media (max-width: 600px) {
+        section {
+            padding-block-start: 2em;
+        }
+
+        .content {
+            padding-left: 20%;
+            padding-right: 10%;
+
+            h1 {
+                font-size: 2.5rem;
+            }
         }
     }
 </style>

@@ -29,4 +29,14 @@
         transform: translateY(9%) scaleY(1.5);
         transform-origin: bottom;
     }
+
+    @media (max-width: 600px) {
+        img {
+            width: 150% !important;
+        }
+
+        .fg-rocks {
+            transform: translateY(9%) scaleY(2.3);
+        }
+    }
 </style>

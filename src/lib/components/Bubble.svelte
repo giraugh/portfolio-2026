@@ -84,7 +84,10 @@
 
         --fade-opacity: 0;
         --float-opacity: 0;
-        opacity: calc(0.8 * min(var(--fade-opacity), var(--float-opacity)));
+        --opacity-mul: 0.8;
+        opacity: calc(
+            var(--opacity-mul) * min(var(--fade-opacity), var(--float-opacity))
+        );
 
         position: absolute;
         border-radius: 50%;
@@ -98,6 +101,10 @@
         svg {
             width: 100%;
             height: 100%;
+        }
+
+        @media (max-width: 600px) {
+            --opacity-mul: 0.4;
         }
     }
 
