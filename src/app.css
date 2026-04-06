@@ -1,0 +1,89 @@
+:root {
+    /* Generic */
+    --col-surface-white: #fefefe;
+    --col-surface-blue: #4088ca;
+    --col-surface-blue-d: #3464b1;
+    --col-surface-blue-dd: #0d305f;
+    --col-text-white: #eee;
+    --rad-button: 0.2rem;
+    --rad-image: 1.5rem;
+    --fnt-heading: "Jost", sans-serif;
+    --fnt-body: "Inter", sans-serif;
+
+    --col-surface: #11053d;
+}
+
+section.dark {
+    background: var(--col-surface);
+    color: var(--col-text-white);
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: var(--fnt-body);
+}
+
+html,
+body {
+    background: linear-gradient(
+        to bottom,
+        var(--col-surface-blue-d),
+        var(--col-surface)
+    );
+    background-attachment: fixed;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--fnt-heading);
+    margin-block-start: 0;
+}
+
+/* Styles */
+
+button,
+a.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    width: max-content;
+
+    background: var(--col-surface);
+    border: none;
+    color: inherit;
+    text-decoration: none;
+    padding: 0.5em 1em;
+    font-size: 1.1em;
+    border-radius: var(--rad-button);
+    font-weight: 500;
+    cursor: pointer;
+    font-family: var(--fnt-heading);
+}
+
+main > section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &:not(.bg-image) {
+        padding-block-end: 1em;
+    }
+
+    .content {
+        max-width: 63em;
+        padding-block: 2em;
+        padding-inline: 2em;
+    }
+}
+
+@media (min-width: 1650px) {
+    body {
+        font-size: 1.3rem;
+    }
+}
