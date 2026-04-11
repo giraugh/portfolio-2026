@@ -37,7 +37,7 @@
     <div class="content">
         <h1>Ahoy there!</h1>
         <p>
-            My names Ewan - I'm a web developer based in Melbourne, Australia. <br
+            My name is Ewan - I'm a web developer based in Melbourne, Australia. <br
             />Keep scrolling to dive into my web, illustration and game dev
             work!
         </p>
