@@ -11,5 +11,6 @@
 <FooterSection /> -->
 
 <svelte:head>
-    <title>Ewan Breakey</title>
+    <!-- CHANGE THIS BACK! -->
+    <title>Ewan Breakey (2026 WIP)</title>
 </svelte:head>
