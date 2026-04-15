@@ -13,12 +13,37 @@
     --col-surface-purple: #51457e;
     --col-surface-purple-bright: #8c80b7;
 
-    --col-surface: #11053d;
+    --col-surface: #1d1537 /* #11053d; */;
 }
 
 section.dark {
     background: var(--col-surface);
     color: var(--col-text-white);
+}
+
+section {
+    search,
+    h2,
+    p {
+        margin-block: 1.3rem;
+    }
+}
+
+.section-inset {
+    padding: 4em;
+    max-width: 800px;
+    margin: auto;
+    padding-top: 2em;
+
+    & h2 {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .section-inset {
+        padding: 2.5em;
+    }
 }
 
 body {

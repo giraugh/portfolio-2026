@@ -19,6 +19,8 @@ export const PROJECT_CATEGORIES = [
 
 export type ProjectCategory = (typeof PROJECT_CATEGORIES)[number]["value"];
 
+export type ProjectTag = "collab" | "old";
+
 export type Project = {
     name: string;
     description: string;
@@ -27,6 +29,7 @@ export type Project = {
     nonSquareImage?: boolean;
     categories: ProjectCategory[];
     shadowCol?: string;
+    tags?: ProjectTag[];
 } & ({ imageID: string } | { imageLink: string });
 
 export const PROJECTS = [
@@ -45,6 +48,7 @@ export const PROJECTS = [
         imageID: "aee45160-2af9-449c-9239-70974d423600",
         link: "https://wattle.org.au",
         shadowCol: "gray",
+        tags: ["collab"],
         categories: ["media", "tool"],
     },
     {
@@ -54,6 +58,7 @@ export const PROJECTS = [
         imageID: "f56085b4-d26b-48a1-8c08-663566356600",
         link: "https://automatarium.tdib.xyz",
         shadowCol: "gray",
+        tags: ["collab"],
         categories: ["tool"],
     },
     {
@@ -153,6 +158,7 @@ export const PROJECTS = [
         imageID: "f63ce787-1bb2-424d-57d6-fa9304ae7500",
         link: "https://tdos.itch.io/fishy",
         shadowCol: "#243e32",
+        tags: ["collab", "old"],
         categories: ["game"],
     },
     {
@@ -185,6 +191,7 @@ export const PROJECTS = [
         imageID: "d46b5f1e-b661-4b86-b39b-fda50135fb00",
         link: "https://tdos.itch.io/knight-game",
         shadowCol: "#35261d",
+        tags: ["old"],
         categories: ["game"],
     },
     {
@@ -193,6 +200,7 @@ export const PROJECTS = [
         imageID: "c5176ffb-4de2-4571-2edc-0318f33cd100",
         link: "https://growingup.avrami.me/",
         shadowCol: "#4b2c1e",
+        tags: ["collab", "old"],
         categories: ["game"],
     },
     {

@@ -1,7 +1,14 @@
 <script lang="ts">
     import { PROJECT_CATEGORIES, PROJECTS } from "$lib/data/projects";
-    import { getProjectImage, makeImageLink } from "$lib/utils/makeImageLink";
-    import { CheckIcon, XIcon } from "lucide-svelte";
+    import { getProjectImage } from "$lib/utils/makeImageLink";
+    import {
+        CheckIcon,
+        XIcon,
+        Apple,
+        Salad,
+        UsersIcon,
+        ClockIcon,
+    } from "lucide-svelte";
 
     const INITIAL_SEARCH_STATE = {
         filter: "",
@@ -31,19 +38,27 @@
             return nameFilter && catFilter;
         });
     });
+
+    let truncated = $state(true);
+    let truncatedProjects = $derived.by(() => {
+        const amount = truncated ? 8 : 9999;
+        return projects.slice(0, amount);
+    });
+
+    $effect(() => {
+        if (searchDirty) {
+            truncated = false;
+        }
+    });
 </script>
 
 <section class="dark">
-    <div class="inset">
+    <div class="section-inset">
         <h2>Projects</h2>
         <p>
-            Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
-            lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
-            lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
-            lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
-            lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
-            lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
-            lorem lorem lorem lorem lorem lorem lorem lorem
+            I've collected quite a few random projects by this point. Theres
+            some video games, physics toys, software libraries and even a comic
+            book in here!
         </p>
         <search>
             <input
@@ -84,54 +99,65 @@
     </div>
 
     <ul class="projects-list">
-        {#each projects as project (project.name)}
+        {#each truncatedProjects as project (project.name)}
             <li>
                 <a
                     class="project-card"
                     href={project.link}
+                    target="_blank"
                     style:--project-shadow={project.shadowCol}
                 >
                     <img src={getProjectImage(project)} alt="" />
                     <div class="details">
-                        <strong>{project.name}</strong>
+                        <strong>
+                            {project.name}
+                            <div class="tags">
+                                {#each project.tags as tag (tag)}
+                                    {#if tag === "collab"}
+                                        <span
+                                            class="tag"
+                                            title="This was a collaboration"
+                                        >
+                                            <UsersIcon size="17" />
+                                        </span>
+                                    {:else if tag === "old"}
+                                        <span
+                                            class="tag"
+                                            title="This is an older project of mine"
+                                        >
+                                            <ClockIcon size="17" />
+                                        </span>
+                                    {/if}
+                                {/each}
+                            </div>
+                        </strong>
                         <span>{project.description}</span>
                     </div>
                 </a>
             </li>
         {/each}
     </ul>
+
+    {#if truncated}
+        <button
+            class="show-more-btn"
+            onclick={() => {
+                truncated = false;
+            }}>Show all {projects.length} projects</button
+        >
+    {/if}
 </section>
 
 <style>
     section {
-        min-height: 1000px;
-    }
-
-    .inset {
-        padding: 4em;
-        max-width: 800px;
-        margin: auto;
-    }
-
-    @media (max-width: 600px) {
-        .inset {
-            padding: 2.5em;
-        }
-    }
-
-    search,
-    h2,
-    p {
-        margin-block: 1.3rem;
-    }
-
-    h2 {
-        font-size: 3rem;
+        padding-top: 4em;
     }
 
     search {
         display: flex;
+        flex-wrap: wrap;
         gap: 0.7rem;
+        margin-block-end: 0rem;
 
         & input {
             padding: 0.5em;
@@ -143,11 +169,31 @@
         }
     }
 
+    @media (max-width: 600px) {
+        input[type="search"] {
+            flex-grow: 1;
+            width: 100%;
+        }
+
+        .categories {
+            width: 100%;
+            flex-grow: 1;
+        }
+
+        .categories > * {
+            flex-grow: 1;
+        }
+    }
+
     .checkbox-btn {
         display: flex;
         align-items: center;
         padding-inline: 0.5em;
         gap: 0.7em;
+
+        &:has(input:focus-visible) {
+            outline: 1px solid white;
+        }
 
         & .tick-container {
             background: var(--col-surface-purple-bright);
@@ -173,6 +219,7 @@
     .categories {
         display: flex;
         gap: 0.7em;
+        flex-wrap: wrap;
     }
 
     .projects-list {
@@ -181,7 +228,7 @@
         margin: auto;
         max-width: 1000px;
         padding-inline: 3em;
-        padding-block: 3em;
+        padding-block: 1em 3em;
 
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -201,7 +248,12 @@
 
         strong {
             font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+            justify-content: space-between;
         }
+
         span {
             font-size: 0.9rem;
             opacity: 0.6;
@@ -221,7 +273,31 @@
             overflow: hidden;
 
             /* Or maybe we want a lighter per-project colour for this? */
+            transition:
+                box-shadow 0.1s,
+                transform 0.1s;
             box-shadow: 0px 5px 0px 0px var(--project-shadow, red);
         }
+
+        &:hover img {
+            box-shadow: 0px 8px 0px 0px var(--project-shadow, red);
+            transform: translateY(-3px);
+        }
+
+        &:active img {
+            box-shadow: 0px 3px 0px 0px var(--project-shadow, red);
+            transform: translateY(2px);
+        }
+    }
+
+    .tags {
+        display: flex;
+        align-items: center;
+        gap: 0.25em;
+    }
+
+    .show-more-btn {
+        margin: auto;
+        margin-block-start: 1rem;
     }
 </style>
