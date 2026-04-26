@@ -48,7 +48,7 @@
         class="fish"
         onanimationend={(e: AnimationEvent) => {
             if (e.target && e.target instanceof HTMLElement) {
-                e.target.style.animationDelay = "500ms";
+                e.target.style.animationDelay = `${20_000 * Math.random()}ms`
                 setFishAnim(e.target);
             }
         }}
