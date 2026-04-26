@@ -16,7 +16,7 @@
 
     let fishImageIndex = $state((Math.random() * fishImages.length) | 0);
     let fishImage = $derived(fishImages[fishImageIndex]);
-    let fishSize = $state(50 + Math.random() * 100);
+    let fishSize = $state(100 + Math.random() * 100);
 
     function setFishAnimDelay(fishEl: HTMLElement) {
         fishEl.style.animationDelay = `${-20_000 * Math.random()}ms`;
@@ -71,6 +71,12 @@
         object-fit: cover;
         width: 100%;
         height: 100%;
+    }
+
+    @media (prefers-reduced-motion) {
+        .fish {
+            display: none;
+        }
     }
 
     :global {

@@ -3,10 +3,21 @@
     import Bubble from "$lib/components/Bubble.svelte";
     import Fish from "$lib/components/Fish.svelte";
     import OceanRocks from "$lib/components/OceanRocks.svelte";
+    import { onMount } from "svelte";
 
     const GITHUB_LINK = "https://github.com/giraugh";
     const LINKEDIN_LINK = "https://www.linkedin.com/in/ewan-breakey-8294241a9/";
+
+    // Measure window width to scale the number of fish/bubbles
+    let oceanPopWeight = $state(1);
+    let windowWidth = $state(1000);
+
+    $effect(() => {
+        oceanPopWeight = Math.max(0.2, Math.min(windowWidth / 1000, 1.0));
+    });
 </script>
+
+<svelte:window bind:innerWidth={windowWidth} />
 
 <section>
     <div class="art">
@@ -24,12 +35,12 @@
             <OceanRocks />
 
             <!-- Bubbles -->
-            {#each { length: 30 } as _, i (i)}
+            {#each { length: Math.floor(30 * oceanPopWeight) } as _, i (i)}
                 <Bubble />
             {/each}
 
             <!-- Fish -->
-            {#each { length: 8 } as _, i (i)}
+            {#each { length: Math.floor(8 * oceanPopWeight) } as _, i (i)}
                 <Fish />
             {/each}
         </div>
@@ -90,6 +101,7 @@
         position: absolute;
         inset: 0;
         pointer-events: none;
+        container-type: size;
 
         background: linear-gradient(
             180deg,
@@ -134,7 +146,7 @@
 
     @media (max-width: 600px) {
         section {
-            padding-block-start: 2em;
+            padding-block-start: 30%;
         }
 
         .content {
