@@ -1,14 +1,7 @@
 <script lang="ts">
+    import ProjectCard from "$lib/components/ProjectCard.svelte";
     import { PROJECT_CATEGORIES, PROJECTS } from "$lib/data/projects";
-    import { getProjectImage } from "$lib/utils/makeImageLink";
-    import {
-        CheckIcon,
-        XIcon,
-        Apple,
-        Salad,
-        UsersIcon,
-        ClockIcon,
-    } from "lucide-svelte";
+    import { CheckIcon, XIcon } from "lucide-svelte";
 
     const INITIAL_SEARCH_STATE = {
         filter: "",
@@ -32,7 +25,7 @@
                 project.description
                     .toLowerCase()
                     .includes(searchState.filter.toLowerCase());
-            const catFilter = project.categories.some(
+            const catFilter = (project?.categories ?? []).some(
                 (cat) => searchState.categories[cat],
             );
             return nameFilter && catFilter;
@@ -101,39 +94,7 @@
     <ul class="projects-list">
         {#each truncatedProjects as project (project.name)}
             <li>
-                <a
-                    class="project-card"
-                    href={project.link}
-                    target="_blank"
-                    style:--project-shadow={project.shadowCol}
-                >
-                    <img src={getProjectImage(project)} alt="" />
-                    <div class="details">
-                        <strong>
-                            {project.name}
-                            <div class="tags">
-                                {#each project.tags as tag (tag)}
-                                    {#if tag === "collab"}
-                                        <span
-                                            class="tag"
-                                            title="This was a collaboration"
-                                        >
-                                            <UsersIcon size="17" />
-                                        </span>
-                                    {:else if tag === "old"}
-                                        <span
-                                            class="tag"
-                                            title="This is an older project of mine"
-                                        >
-                                            <ClockIcon size="17" />
-                                        </span>
-                                    {/if}
-                                {/each}
-                            </div>
-                        </strong>
-                        <span>{project.description}</span>
-                    </div>
-                </a>
+                <ProjectCard {project} />
             </li>
         {/each}
     </ul>
@@ -233,67 +194,6 @@
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: 2em;
-    }
-
-    .project-card {
-        display: flex;
-        flex-direction: column;
-        gap: 0.7em;
-        text-decoration: none;
-        color: inherit;
-
-        &:hover strong {
-            text-decoration: underline;
-        }
-
-        strong {
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5em;
-            justify-content: space-between;
-        }
-
-        span {
-            font-size: 0.9rem;
-            opacity: 0.6;
-        }
-
-        .details {
-            display: flex;
-            flex-direction: column;
-            gap: 0.2em;
-        }
-
-        img {
-            width: 100%;
-            height: 8em;
-            object-fit: cover;
-            border-radius: 10px;
-            overflow: hidden;
-
-            /* Or maybe we want a lighter per-project colour for this? */
-            transition:
-                box-shadow 0.1s,
-                transform 0.1s;
-            box-shadow: 0px 5px 0px 0px var(--project-shadow, red);
-        }
-
-        &:hover img {
-            box-shadow: 0px 8px 0px 0px var(--project-shadow, red);
-            transform: translateY(-3px);
-        }
-
-        &:active img {
-            box-shadow: 0px 3px 0px 0px var(--project-shadow, red);
-            transform: translateY(2px);
-        }
-    }
-
-    .tags {
-        display: flex;
-        align-items: center;
-        gap: 0.25em;
     }
 
     .show-more-btn {

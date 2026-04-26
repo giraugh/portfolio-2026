@@ -1,6 +1,8 @@
 <script lang="ts">
     import rockForCrabImage from "$lib/assets/rock-for-crab.svg";
     import crabImage from "$lib/assets/crab.png";
+    import ProjectCard from "$lib/components/ProjectCard.svelte";
+    import { SHOUT_OUT_PROJECTS } from "$lib/data/projects";
 </script>
 
 {#snippet intro()}
@@ -24,7 +26,14 @@
             <div class="mobile intro">
                 {@render intro()}
             </div>
-            HEY WORLD
+
+            <ul class="projects-list">
+                {#each SHOUT_OUT_PROJECTS as project (project.name)}
+                    <li>
+                        <ProjectCard {project} />
+                    </li>
+                {/each}
+            </ul>
         </div>
     </div>
 </section>
@@ -131,6 +140,19 @@
             margin: auto;
 
         }
+    }
+
+    .projects-list {
+        list-style-type: none;
+        margin: 0;
+        margin: auto;
+        max-width: 1000px;
+        padding-inline: 3em;
+        padding-block: 1em 3em;
+
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 2em;
     }
 
     @keyframes occasional-jump {

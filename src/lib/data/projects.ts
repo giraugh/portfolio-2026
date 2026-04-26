@@ -27,9 +27,13 @@ export type Project = {
     link: string;
     hideTitle?: boolean;
     nonSquareImage?: boolean;
-    categories: ProjectCategory[];
+    categories?: ProjectCategory[];
     shadowCol?: string;
     tags?: ProjectTag[];
+    author?: {
+        name: string;
+        link: string;
+    };
 } & ({ imageID: string } | { imageLink: string });
 
 export const PROJECTS = [
@@ -251,6 +255,66 @@ export const PROJECTS = [
         link: "http://giraugh.xyz/hex-redux",
         shadowCol: "#333",
         categories: ["tool", "game"],
+    },
+] as readonly Project[];
+
+export const SHOUT_OUT_PROJECTS = [
+    {
+        name: "Crab.Fit",
+        description: "Find a time to meet with friends",
+        imageID: "d84213f9-0f86-4fdb-dbd4-a6104d779600",
+        link: "https://crab.fit",
+        shadowCol: "#585858",
+        author: {
+            name: "Benji",
+            link: "https://bengrant.dev",
+        },
+    },
+    {
+        name: "Elementary",
+        description: "Experiment with 1D elementary automata",
+        imageID: "c3f83532-39da-47ca-8721-cebce448bf00",
+        link: "https://elementary.tdib.xyz",
+        shadowCol: "#5c5c5c",
+        author: {
+            name: "Dib",
+            link: "https://tdib.xyz",
+        },
+    },
+    {
+        name: "Beyond the Lens",
+        description: "Explore a strange environment and capture surreal photos",
+        imageID: "ef464973-0907-4fa8-22f3-2b0b2d6fa800",
+        link: "https://benkoder.itch.io/beyondthelens",
+        shadowCol: "#414906",
+        author: {
+            name: "Koder",
+            link: "https://benkoder.com",
+        },
+    },
+    {
+        name: "Qubit",
+        description: "Seamless RPC library for Rust & Typescript",
+        link: "https://github.com/andogq/qubit",
+        imageID: "bdba4ef1-6c8b-4386-4722-72b587085100",
+        shadowCol: "grey",
+        nonSquareImage: true,
+        author: {
+            name: "AndoGQ",
+            link: "http://github.com/andogq",
+        },
+    },
+    {
+        name: "~Virtual Dream~",
+        description: "ARG web host exploration experience",
+        link: "https://virtualdream.live/",
+        imageID: "421e0679-d772-408f-c8f5-e9c7a7e82e00",
+        shadowCol: "grey",
+        nonSquareImage: true,
+        author: {
+            name: "Libus",
+            link: "https://libus.xyz",
+        },
     },
 ] as readonly Project[];
 
