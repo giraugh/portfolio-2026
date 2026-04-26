@@ -55,7 +55,7 @@
 <style>
     section {
         color: var(--col-text-white);
-        min-height: 95dvh;
+        min-height: 95lvh;
         box-sizing: border-box;
         overflow: hidden;
         position: relative;
