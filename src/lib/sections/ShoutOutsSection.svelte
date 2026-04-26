@@ -131,7 +131,7 @@
     .content {
         background: linear-gradient(to bottom, #341f80, var(--col-surface) 50%);
         width: 100%;
-        min-height: 800px;
+        min-height: 600px;
         padding-inline: 2em;
         box-sizing: border-box;
 

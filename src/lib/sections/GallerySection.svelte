@@ -36,6 +36,10 @@
 </section>
 
 <style>
+    section {
+        padding-block-start: 4em;
+    }
+
     .featured-images {
         display: flex;
         justify-content: space-evenly;
