@@ -155,6 +155,7 @@
             background-position:
                 0 0,
                 60px 60px;
+            animation: scroll-bg 8s linear infinite;
         }
 
         div {
@@ -174,6 +175,14 @@
                     transparent
                 );
             }
+        }
+    }
+
+    @keyframes scroll-bg {
+        to {
+            background-position:
+                60px 60px,
+                120px 120px;
         }
     }
 
