@@ -2,13 +2,13 @@
     import GallerySection from "$lib/sections/GallerySection.svelte";
     import IntroSection from "$lib/sections/IntroSection.svelte";
     import ProjectsSection from "$lib/sections/ProjectsSection.svelte";
+    import ShoutOutsSection from "$lib/sections/ShoutOutsSection.svelte";
 </script>
 
 <IntroSection />
 <ProjectsSection />
 <GallerySection />
-<!-- <ShoutOutSection />
-<FooterSection /> -->
+<ShoutOutsSection />
 
 <svelte:head>
     <!-- CHANGE THIS BACK! -->

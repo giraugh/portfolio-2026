@@ -23,7 +23,7 @@ section.dark {
 
 section {
     search,
-    h2,
+    > h2,
     p {
         margin-block: 1.3rem;
     }
