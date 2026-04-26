@@ -147,8 +147,8 @@
         margin: 0;
         margin: auto;
         max-width: 1000px;
-        padding-inline: 3em;
-        padding-block: 1em 3em;
+        padding-inline: 1em;
+        padding-block: 2em 3em;
 
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
